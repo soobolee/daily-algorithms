@@ -3,17 +3,17 @@
  * @return {Function}
  */
 function memoize(fn) {
-    let memoArgs = {};
+    let memoArgs = new Map();
 
     return function(...args) {
         const key = String(args);
 
-        if (key in memoArgs) {
-            return memoArgs[key];
+        if (memoArgs.has(key)) {
+            return memoArgs.get(key);
         }
 
-        memoArgs[key] = fn(...args);
-        return memoArgs[key];
+        memoArgs.set(key, fn(...args));
+        return memoArgs.get(key);
     }
 }
 
