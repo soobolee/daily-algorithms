@@ -4,12 +4,12 @@
  * @return {boolean}
  */
 const isAnagram = function(s, t) {
-    const sHash = getCharAnagram(s);
-    const tHash = getCharAnagram(t);
-
-    if (sHash.size !== tHash.size) {
+    if (s.length !== t.length) {
         return false;
     }
+
+    const sHash = getCharAnagram(s);
+    const tHash = getCharAnagram(t);
 
     for (const key of sHash.keys()) {
         if (!tHash.has(key)) {
