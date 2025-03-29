@@ -11,12 +11,12 @@ const isAnagram = function(s, t) {
     const sHash = getCharAnagram(s);
     const tHash = getCharAnagram(t);
 
-    for (const key of sHash.keys()) {
-        if (!tHash.has(key)) {
+    for (const key of Object.keys(sHash)) {
+        if (!tHash[key]) {
             return false;
         }
 
-        if (sHash.get(key) !== tHash.get(key)) {
+        if (sHash[key] !== tHash[key]) {
             return false;
         }
     }
@@ -25,15 +25,15 @@ const isAnagram = function(s, t) {
 };
 
 const getCharAnagram = function(string) {
-    const hash = new Map();
+    const hash = {};
     const charArray = string.split("");
 
     for (const char of charArray) {
-        if (hash.has(char)) {
-            let charCount = hash.get(char);
-            hash.set(char, ++charCount);
+        if (char in hash) {
+            let charCount = hash[char];
+            hash[char] = ++charCount;
         } else {
-            hash.set(char, 1);
+            hash[char] = 1;
         }
     }
 
