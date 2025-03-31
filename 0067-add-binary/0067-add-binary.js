@@ -10,7 +10,7 @@ var addBinary = function(a, b) {
     let addBinary = "";
     let two = 0;
 
-    for (let i = 0; i < .length; i++) {
+    for (let i = 0; i < longLength; i++) {
         const numA = Number(aArray[i]) || 0;
         const numB = Number(bArray[i]) || 0;
 
