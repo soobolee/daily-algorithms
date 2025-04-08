@@ -12,5 +12,24 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    return JSON.stringify(p) === JSON.stringify(q);
+    const validSame = function(pNode, qNode) {
+        if (pNode === null && qNode === null) {
+            return true;
+        }
+
+        if (pNode === null || qNode === null) {
+            return false;
+        }
+
+        if (pNode.val !== qNode.val) {
+            return false;
+        }
+
+        const isLeftSame = validSame(pNode.left, qNode.left);
+        const isRightSame = validSame(pNode.right, qNode.right);
+
+        return isLeftSame && isRightSame;
+    }
+
+    return validSame(p, q);
 };
