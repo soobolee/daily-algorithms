@@ -9,11 +9,13 @@ var majorityElement = function(nums) {
     }
 
     let maxValue = 0;
-    for (const max of counter) {
-        if (maxValue < max) {
-            maxValue = max;
+    let maxKey = 0;
+    for (const key of Object.keys(counter)) {
+        if (maxValue < counter[key]) {
+            maxValue = counter[key];
+            maxKey = key;
         }
     }
 
-    return maxValue;
+    return Number(maxKey);
 };
