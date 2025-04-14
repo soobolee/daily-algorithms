@@ -3,19 +3,17 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    const counter = {};
-    for (const num of nums) {
-        counter[num] = counter[num] ? counter[num] + 1 : 1;
-    }
+    const count = {};
+    let max = 0;
+    let maxKey = nums[0];
 
-    let maxValue = 0;
-    let maxKey = 0;
-    for (const key of Object.keys(counter)) {
-        if (maxValue < counter[key]) {
-            maxValue = counter[key];
-            maxKey = key;
+    for (const num of nums) {
+        count[num] = (count[num] || 0) + 1;
+        if (count[num] > max) {
+            max = count[num];
+            maxKey = num;
         }
     }
 
-    return Number(maxKey);
+    return maxKey;
 };
