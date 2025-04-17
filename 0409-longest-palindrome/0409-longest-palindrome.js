@@ -14,12 +14,5 @@ var longestPalindrome = function(s) {
         }
     }
 
-    for (const value of Object.values(charCount)) {
-        if (value % 2 !== 0) {
-            evenCount++;
-            break;
-        }
-    }
-
-    return evenCount;
+    return evenCount < s.length ? evenCount + 1 : evenCount;
 };
