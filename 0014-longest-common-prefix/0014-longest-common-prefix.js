@@ -9,22 +9,22 @@ var longestCommonPrefix = function(strs) {
     let i = 0;
     let j = 0;
     while (true) {
-        const current = strs[i][j];
-
-        if (!current) {
+        if (!strs[i][j]) {
             break;
         }
+        const current = strs[i][j];
+
         prefixCounter[current] = (prefixCounter[current] || 0) + 1;
 
         i++;
 
-        console.log(prefixCounter[current]);
         if (i === strs.length) {
             if (prefixCounter[current] === strs.length) {
                 commonPrefix += current;
             } else {
                 break;
             }
+            delete prefixCounter[current];
 
             i = 0;
             j++;
