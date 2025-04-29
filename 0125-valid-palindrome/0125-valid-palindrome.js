@@ -3,22 +3,26 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    const lowerStr = s.toLowerCase();
-    const strArray = lowerStr.split("");
-
-    const aAscii = "a".charCodeAt();
-    const zAscii = "z".charCodeAt();
-    const zeroAscii = "0".charCodeAt();
-    const nineAscii = "9".charCodeAt();
-
-    let fullStr = "";
-    for (let i = 0; i < strArray.length; i++) {
-        if (aAscii <= strArray[i].charCodeAt() && strArray[i].charCodeAt() <= zAscii) {
-            fullStr += strArray[i];
-        } else if (zeroAscii <= strArray[i].charCodeAt() && strArray[i].charCodeAt() <= nineAscii) {
-            fullStr += strArray[i];
+    if (s.length <= 1) {
+        return true;
+    }
+    s = s.toLowerCase();
+    let newStr = "";
+    for (const char of s) {
+        if (/[a-z0-9]/.test(char)) {
+            newStr += char;
         }
     }
 
-    return fullStr === fullStr.split("").reverse().join("");
+    const left = newStr.slice(0, Math.floor(newStr.length / 2));
+    let right = newStr.slice(Math.floor(newStr.length / 2), newStr.length)
+    right = right.split("").reverse().join("");
+
+    for (let i = 0; i < left.length; i++) {
+        if (left[i] !== right[i]) {
+            return false;
+        }
+    }
+
+    return true;
 };
