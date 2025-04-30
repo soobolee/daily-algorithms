@@ -3,39 +3,25 @@
  * @param {string} t
  * @return {boolean}
  */
-const isAnagram = function(s, t) {
+var isAnagram = function(s, t) {
     if (s.length !== t.length) {
         return false;
     }
+    const sHash = {};
+    const tHash = {};
 
-    const sHash = getCharAnagram(s);
-    const tHash = getCharAnagram(t);
+    for (let i = 0; i < s.length; i++) {
+        sHash[s[i]] = (sHash[s[i]] || 0) + 1;
+    }
+    for (let i = 0; i < t.length; i++) {
+        tHash[t[i]] = (tHash[t[i]] || 0) + 1;
+    }
 
     for (const key of Object.keys(sHash)) {
-        if (!tHash[key]) {
-            return false;
-        }
-
-        if (sHash[key] !== tHash[key]) {
+        if (!tHash[key] || sHash[key] !== tHash[key]) {
             return false;
         }
     }
 
     return true;
 };
-
-const getCharAnagram = function(string) {
-    const hash = {};
-    const charArray = string.split("");
-
-    for (const char of charArray) {
-        if (char in hash) {
-            let charCount = hash[char];
-            hash[char] = ++charCount;
-        } else {
-            hash[char] = 1;
-        }
-    }
-
-    return hash;
-}
