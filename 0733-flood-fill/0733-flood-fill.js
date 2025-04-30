@@ -5,28 +5,25 @@
  * @param {number} color
  * @return {number[][]}
  */
-var floodFill = function(image, sr, sc, color) {
-    const defaultColor = image[sr][sc];
-    if (defaultColor === color) {
+const floodFill = function(image, sr, sc, color) {
+    const originalColor = image[sr][sc];
+    if (originalColor === color) {
         return image;
     }
+    const direction = [[-1, 0], [0, -1], [0, 1], [1, 0]];
 
-    const direction = [[1, 0], [0, 1], [-1, 0], [0, -1]];
-
-    function dfs(sr, sc) {
-        if (!image[sr] || image[sr][sc] !== defaultColor) {
+    const fill = function(i, j) {
+        if (!image[i] || image[i][j] !== originalColor) {
             return;
         }
 
-        if (image[sr][sc] === defaultColor) {
-            image[sr][sc] = color;
-        }
+        image[i][j] = color;
 
-        for (const rc of direction) {
-            dfs(sr + rc[0], sc + rc[1]);
+        for (const [r, c] of direction) {
+            fill(i + r, j + c);
         }
     }
-
-    dfs(sr, sc);
+    
+    fill(sr, sc);
     return image;
 };
