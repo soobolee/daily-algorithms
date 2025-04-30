@@ -4,7 +4,22 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    const idx = nums.findIndex((num) => num === target);
+    let start = 0;
+    let end = nums.length - 1;
+    
+    while (start <= end) {
+        const mid = Math.floor((end + start) / 2);
 
-    return idx <= 0 ? idx : idx;
+        if (nums[mid] === target) {
+            return mid;
+        }
+
+        if (nums[mid] < target) {
+            start = mid + 1;
+        } else if (nums[mid] > target) {
+            end = mid - 1;
+        }
+    }
+
+    return -1;
 };
