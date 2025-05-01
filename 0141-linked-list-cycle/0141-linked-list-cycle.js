@@ -11,20 +11,17 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    const visitedMap = new Set();
+    let slow = head;
+    let fast = head;
 
-    while (true) {
-        if (!head || !head.next) {
-            return false;
-        }
-        const key = head;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
 
-        if (!visitedMap.has(key)) {
-            visitedMap.add(key, "visit");
-        } else {
+        if (slow === fast) {
             return true;
         }
-
-        head = head.next;
     }
+    
+    return false;
 };
