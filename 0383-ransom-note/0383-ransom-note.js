@@ -4,24 +4,18 @@
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-    const magazineMap = {};
+    const hash = {};
 
-    for (const str of magazine.split("")) {
-        let count = magazineMap[str];
-        if (count) {
-            count++;
-            magazineMap[str] = count;
-        } else {
-            magazineMap[str] = 1;
-        }
+    for (const char of magazine) {
+        hash[char] = (hash[char] || 0) + 1;
     }
 
-    console.log(magazineMap);
-    for (const str of ransomNote.split("")) {
-        if (!magazineMap[str] || magazineMap[str] < 1) {
+    for (const char of ransomNote) {
+        if (!hash[char]) {
             return false;
+        } else {
+            hash[char] = hash[char] - 1;
         }
-        magazineMap[str]--;
     }
 
     return true;
