@@ -3,16 +3,16 @@
  * @return {number}
  */
 var longestPalindrome = function(s) {
-    const charCount = {};
-    let evenCount = 0;
+    const hash = {};
+    let length = 0;
 
-    for (const str of s) {
-        charCount[str] = (charCount[str] || 0) + 1;
+    for (const char of s) {
+        hash[char] = (hash[char] || 0) + 1;
 
-        if (charCount[str] % 2 === 0) {
-            evenCount += 2;
+        if (hash[char] % 2 === 0) {
+            length += 2;
         }
     }
-
-    return evenCount < s.length ? evenCount + 1 : evenCount;
+    
+    return length < s.length ? length + 1 : length;
 };
