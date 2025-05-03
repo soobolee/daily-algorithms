@@ -3,21 +3,18 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-    if (n === 1) {
-        return 1;
-    }
-    if (n === 2) {
-        return 2;
+    if (n <= 3) {
+        return n;
     }
 
-    let first = 1;
-    let second = 2;
+    const stairs = new Array(n + 1).fill(0);
+    stairs[1] = 1;
+    stairs[2] = 2;
+    stairs[3] = 3;
 
     for (let i = 3; i <= n; i++) {
-        let temp = first + second;
-        first = second;
-        second = temp;
+        stairs[i] = stairs[i - 1] + stairs[i - 2];
     }
 
-    return second;
+    return stairs[n];
 };
