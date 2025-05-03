@@ -20,4 +20,4 @@ var reverseList = function(head) {
     }
 
     return reversedList;
-};
+ };
