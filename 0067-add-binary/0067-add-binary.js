@@ -6,24 +6,24 @@
 var addBinary = function(a, b) {
     const aArray = a.split("").reverse();
     const bArray = b.split("").reverse();
-    const longLength = aArray.length > bArray.length ? aArray.length : bArray.length;
-    let addBinary = "";
-    let two = 0;
+    const longLength = Math.max(aArray.length, bArray.length)
+    let result = "";
+    let carry = 0;
 
     for (let i = 0; i < longLength; i++) {
         const numA = Number(aArray[i]) || 0;
         const numB = Number(bArray[i]) || 0;
 
-        const addRes = numA + numB + two;
+        const addRes = numA + numB + carry;
 
         if (addRes >= 2) {
-            two = 1;
-            addBinary = (addRes - 2) + addBinary;
+            carry = 1;
+            result = (addRes - 2) + result;
         } else {
-            two = 0;
-            addBinary = addRes + addBinary;
+            carry = 0;
+            result = addRes + result;
         }
     }
 
-    return two > 0 ? "1" + addBinary : addBinary;
+    return carry > 0 ? "1" + result : result;
 };
