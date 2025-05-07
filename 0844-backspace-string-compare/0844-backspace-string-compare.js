@@ -4,39 +4,19 @@
  * @return {boolean}
  */
 var backspaceCompare = function(s, t) {
-    let shashCount = 0;
-    let thashCount = 0;
-    let sResult = "";
-    let tResult = "";
+    const executeBackSpace = function(str) {
+        const executeList = [];
 
-    for (const str of Array.from(s).reverse()) {
-        if (str === "#") {
-            shashCount++;
-            continue;
-        }
-        if (shashCount > 0) {
-            shashCount--;
-            continue;
-        }
+        for (const s of str) {
+            if (s === "#") {
+                executeList.pop();
+                continue;
+            }
 
-        sResult += str;
+            executeList.push(s);
+        }
+        return executeList.join("");
     }
 
-        for (const str of Array.from(t).reverse()) {
-        if (str === "#") {
-            thashCount++;
-            continue;
-        }
-        if (thashCount > 0) {
-            thashCount--;
-            continue;
-        }
-
-        tResult += str;
-    }
-
-    console.log(sResult);
-    console.log(tResult);
-
-    return sResult === tResult;
+    return executeBackSpace(s) === executeBackSpace(t);
 };
