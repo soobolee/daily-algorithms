@@ -12,24 +12,21 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    const validSame = function(pNode, qNode) {
-        if (pNode === null && qNode === null) {
+    function dfs(root1, root2) {
+        if (!root1 && !root2) {
             return true;
         }
 
-        if (pNode === null || qNode === null) {
+        if (!root1 || !root2) {
             return false;
         }
 
-        if (pNode.val !== qNode.val) {
+        if (root1.val !== root2.val) {
             return false;
         }
 
-        const isLeftSame = validSame(pNode.left, qNode.left);
-        const isRightSame = validSame(pNode.right, qNode.right);
-
-        return isLeftSame && isRightSame;
+        return dfs(root1.left, root2.left) && dfs(root1.right, root2.right);
     }
 
-    return validSame(p, q);
+    return dfs(p, q);
 };
