@@ -16,21 +16,19 @@ function isSubtree(root, subRoot) {
     return false;
   }
 
-  return (
-    isSameTree(root, subRoot) ||
-    isSubtree(root.left, subRoot) ||
-    isSubtree(root.right, subRoot)
-  );
+  if (isSameTree(root, subRoot)) {
+    return true;
+  }
+
+  return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 }
 
 function isSameTree(a, b) {
   if (!a && !b) {
     return true;
   }
-  if (!a || !b) {
-    return false;
-  }
-  if (a.val !== b.val) {
+
+  if (!a || !b || a.val !== b.val) {
     return false;
   }
 
