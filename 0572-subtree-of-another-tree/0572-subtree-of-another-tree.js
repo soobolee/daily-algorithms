@@ -11,26 +11,26 @@
  * @param {TreeNode} subRoot
  * @return {boolean}
  */
-function isSubtree(root, subRoot) {
-  if (!root) {
-    return false;
-  }
+var isSubtree = function(root, subRoot) {
+    function dfs(node, subNode) {
+        if (!node && !subNode) {
+            return true;
+        }
 
-  if (isSameTree(root, subRoot)) {
-    return true;
-  }
+        if (!node || !subNode || node.val !== subNode.val) {
+            return false;
+        }
 
-  return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
-}
+        return dfs(node.left, subNode.left) && dfs(node.right, subNode.right);
+    }
 
-function isSameTree(a, b) {
-  if (!a && !b) {
-    return true;
-  }
+    if (!root) {
+        return false;
+    }
 
-  if (!a || !b || a.val !== b.val) {
-    return false;
-  }
+    if (dfs(root, subRoot)) {
+        return true;
+    }
 
-  return isSameTree(a.left, b.left) && isSameTree(a.right, b.right);
-}
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+};
