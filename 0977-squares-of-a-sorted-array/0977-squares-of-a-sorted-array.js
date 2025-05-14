@@ -3,19 +3,19 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
-    let min = 0;
-    let max = nums.length - 1;
-    const squaresArray = [];
+    let left = 0;
+    let right = nums.length - 1;
+    const result = new Array(nums.length);
 
-    for (let i = 0; i < nums.length; i++) {
-        if (Math.abs(nums[min]) > Math.abs(nums[max])) {
-            squaresArray[i] = nums[min] ** 2;
-            min++
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+            result[i] = nums[left] ** 2;
+            left++;
         } else {
-            squaresArray[i] = nums[max] ** 2;
-            max--;
+            result[i] = nums[right] ** 2;
+            right--;
         }
     }
 
-    return squaresArray.reverse();
+    return result;
 };
