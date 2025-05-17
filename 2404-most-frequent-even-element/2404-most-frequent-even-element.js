@@ -19,7 +19,7 @@ var mostFrequentEven = function(nums) {
         if (keyValue > maxValue) {
             max = key;
         } else if (keyValue === maxValue) {
-            max = key < max ? key : max;
+            max = Number(key) < Number(max) ? key : max;
         }
     }
 
