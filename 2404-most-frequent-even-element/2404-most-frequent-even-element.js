@@ -17,11 +17,11 @@ var mostFrequentEven = function(nums) {
         const keyValue = Number(hash[key]);
 
         if (keyValue > maxValue) {
-            max = key;
+            max = Number(key);
         } else if (keyValue === maxValue) {
-            max = Number(key) < Number(max) ? key : max;
+            max = key < max ? key : max;
         }
     }
 
-    return Number(max);
+    return max;
 };
